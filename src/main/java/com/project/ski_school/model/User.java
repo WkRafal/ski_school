@@ -88,4 +88,10 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public void updateFrom(final User source) {
+        name = source.name;
+        surname = source.surname;
+        phone = source.phone;
+    }
 }

@@ -1,5 +1,6 @@
 package com.project.ski_school.repository;
 
+import com.project.ski_school.model.Role;
 import com.project.ski_school.model.User;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface UserRepository {
     Optional<User> findById(Integer id);
 
     User save(User entity);
+
+    List<User> findUserByRole(Role role);
+    boolean existsById(Integer id);
 }
