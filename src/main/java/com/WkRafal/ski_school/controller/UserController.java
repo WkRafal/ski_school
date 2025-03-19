@@ -26,7 +26,7 @@ public class UserController {
     ResponseEntity<?> createUser(@RequestBody User createUser) {
         User result = repository.save(createUser);
         logger.info("save user");
-        return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
+        return ResponseEntity.created(URI.create("/" + result.getUserID())).body(result);
     }
 
     @GetMapping("/{id}")

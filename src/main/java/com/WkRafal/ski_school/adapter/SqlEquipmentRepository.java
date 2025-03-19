@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-interface SqlEquipmentRepository extends EquipmentRepository, JpaRepository<Equipment, Integer> {
+interface LiSqlEquipmentRepository extends EquipmentRepository, JpaRepository<Equipment, Integer> {
     @Override
     List<Equipment> findByEquipmentType(String type);
 

@@ -1,8 +1,11 @@
 package com.WkRafal.ski_school.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "equipments")
@@ -10,7 +13,7 @@ public class Equipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int equipmentID;
 
     private String equipmentType;
 
@@ -25,15 +28,20 @@ public class Equipment {
 
     private String comments;
 
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference("equipment-rental")
+    private List<Rental> rentals;
+
+
     public Equipment() {
     }
 
-    public int getId() {
-        return id;
+    public int getEquipmentID() {
+        return equipmentID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEquipmentID(int id) {
+        this.equipmentID = id;
     }
 
     public String getEquipmentType() {
@@ -82,6 +90,14 @@ public class Equipment {
 
     public void setStateOfPossession(String stateOfPossession) {
         this.stateOfPossession = stateOfPossession;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
     }
 
     public void updateFrom(final Equipment source) {
