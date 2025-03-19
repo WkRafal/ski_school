@@ -36,6 +36,10 @@ public class User {
     @JsonManagedReference("user-rental")
     private List<Rental> rentals;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference("user-equipment_service")
+    private List<EquipmentService> services;
+
     public User() {
     }
 
@@ -97,6 +101,14 @@ public class User {
 
     public void setRentals(List<Rental> rentals) {
         this.rentals = rentals;
+    }
+
+    public List<EquipmentService> getServices() {
+        return services;
+    }
+
+    public void setServices(List<EquipmentService> services) {
+        this.services = services;
     }
 
     public void setRole(Role role) {

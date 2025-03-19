@@ -32,6 +32,10 @@ public class Equipment {
     @JsonManagedReference("equipment-rental")
     private List<Rental> rentals;
 
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference("equipment-equipment_service")
+    private List<EquipmentService> services;
+
 
     public Equipment() {
     }
@@ -98,6 +102,14 @@ public class Equipment {
 
     public void setRentals(List<Rental> rentals) {
         this.rentals = rentals;
+    }
+
+    public List<EquipmentService> getServices() {
+        return services;
+    }
+
+    public void setServices(List<EquipmentService> services) {
+        this.services = services;
     }
 
     public void updateFrom(final Equipment source) {
